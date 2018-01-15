@@ -16,7 +16,7 @@ const ReportDataDisplay = ({reportData}) => (
         reportData && `: ${reportData.can_message_unique_count}`}
       </li>
       <li>Total run time of the data in the file base on the ts (timestamps){
-        reportData && `: INCOMPLETE`}
+        reportData && `: ${reportData.total_run_time}`}
       </li>
       <li>Average messages per second of run time
         {reportData && <ul>
