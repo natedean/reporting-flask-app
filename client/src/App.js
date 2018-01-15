@@ -3,8 +3,7 @@ import 'milligram/dist/milligram.css';
 import './App.css';
 import {fetchReportData} from "./services";
 import Navigation from './Navigation';
-import ReportDataDescription from './ReportDataDescription';
-import ReportContainer from './ReportContainer';
+import ReportDataDisplay from './ReportDataDisplay';
 
 class App extends Component {
 
@@ -26,6 +25,16 @@ class App extends Component {
       });
   };
 
+  getButtonText() {
+    const {isLoading, reportData} = this.state;
+
+    if (isLoading) return `Loading Report Data...`;
+
+    if (!reportData) return `Fetch Report Data`;
+
+    return `Reload Report Data`;
+  }
+
   render() {
     const {isLoading, reportData} = this.state;
 
@@ -33,15 +42,12 @@ class App extends Component {
       <div className="App wrapper">
         <Navigation/>
         <div className="container body">
-          {!reportData && <div>
-            <ReportDataDescription/>
-            <button
-              disabled={isLoading}
-              onClick={this.fetchReportData}>
-              {isLoading ? 'Loading...' : 'Fetch Report Data'}
-            </button>
-          </div>}
-          {reportData && <ReportContainer reportData={reportData} />}
+          <ReportDataDisplay reportData={reportData}/>
+          <button
+            disabled={isLoading}
+            onClick={this.fetchReportData}>
+            {this.getButtonText()}
+          </button>
         </div>
       </div>
     );
