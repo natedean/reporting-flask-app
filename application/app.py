@@ -10,5 +10,10 @@ app = Flask(__name__, static_folder="../client/build/static", template_folder=".
 def index():
     return render_template("index.html")
 
+@app.route("/api/report")
+def report():
+    data = {"awesome": 52}
+    return jsonify(data)
+
 if __name__ == "__main__":
     app.run()
