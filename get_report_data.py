@@ -76,7 +76,6 @@ def get_report_data():
                     result = float(result)
                 if isinstance(result, datetime.datetime):
                     result = str(result)
-                print(type(result), result)
                 data[datum_name] = result
     conn.close()
     data["total_run_time"] = get_total_run_time()
