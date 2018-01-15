@@ -1,8 +1,7 @@
 from flask import Flask, request, render_template, jsonify, url_for, redirect, g, send_from_directory
 from .models import User
 from index import app, db
-from sqlalchemy.exc import IntegrityError
-from .utils.auth import generate_token, requires_auth, verify_token
+from get_report_data import get_report_data
 
 app = Flask(__name__, static_folder="../client/build/static", template_folder="../client/build")
 
@@ -12,8 +11,8 @@ def index():
 
 @app.route("/api/report")
 def report():
-    data = {"awesome": 52}
-    return jsonify(data)
+    report_data = get_report_data()
+    return jsonify(report_data)
 
 if __name__ == "__main__":
     app.run()
