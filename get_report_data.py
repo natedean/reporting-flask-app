@@ -1,11 +1,11 @@
+import os
 import psycopg2
 import psycopg2.extras
 import decimal
 import datetime
 from time_util import human_delta
 
-CONN_URL = """host=postgres.cvlhol1iwi8w.us-east-2.rds.amazonaws.com
-                dbname=test user=nate password=asdfasdf"""
+CONN_URL = os.environ.get('DB_CONN_STRING')
 
 QUERIES = [
     ("gps_message_count", "SELECT count(*) FROM gps_messages;",),
